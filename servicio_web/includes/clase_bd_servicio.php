@@ -2,15 +2,18 @@
 	if(!class_exists("clase_bd_servicio")){
 		class clase_bd_servicio{
 		protected $mysqli;
-		protected $xml;
+		//protected $xml;
+		protected $bd;
+		protected $direccionBd= 'YOURDBURL';
+		protected $usuarioBd='YOURDBUSER';
+		protected $passwordBd='YOURDBPASSWORD';
+		protected $nombreBd='YOURDBNAME';
+		
 		
 			public function __construct(){
 				global $mysqli;
-				global  $xml;
 				session_start();
-
-				$xml = simplexml_load_file('datos_xml/bd_servicio_web_info.xml');
-				$mysqli = new mysqli($xml->bd[0]->direccion,$xml->bd[0]->usuario,$xml->bd[0]->contrasenya, $xml->bd[0]->nombre_bd);
+				$mysqli = new mysqli($this->direccionBd,$this->usuarioBd,$this->passwordBd);
 				$mysqli2;
 				
 				
@@ -20,8 +23,8 @@
 				/*AQUI SE HA DE COMPROBAR SI LA BASE DE DATOS ESTA CREADA Y DE NO
 				* SER ASI DEBE CREARSE */
 				
-				$nombre_bd = $xml->bd[0]->nombre_bd;		
-				$resultado = $mysqli->select_db($nombre_bd);
+				
+				$resultado = $mysqli->select_db($this->nombreBD);
 				
 				if(!$resultado){
 					printf("no existia la base de datos %s\n ",$mysqli->errno);
@@ -52,22 +55,18 @@
 			
 			function crea_bd(){
 				global $mysqli;
-				global $xml;
-				$consulta = "CREATE DATABASE ". $xml->bd[0]->nombre_bd;
+				$consulta = "CREATE DATABASE ". $this->nombre_bd;
 				$resultado = $mysqli->query($consulta);
 				printf("base de datos creada = %s\n ",$resultado);
-				$mysqli->select_db($xml->bd[0]->nombre_bd);
+				$mysqli->select_db($this->nombreBd);
 					
 			}
 			
 			public function crea_segunda_conexion($enlace){
 				global $mysqli2;
-				//if(isset($mysqli2)) $mysqli2->close();
-				//print_r($enlace);
+
 				$mysqli2 = new mysqli($enlace->direccion_bd,$enlace->usuario,$enlace->contrasenya, $enlace->nombre_bd);
-				//print_r($mysqli2);		
-				//$resultado = $mysqli2->select_db($enlace->nombre_bd);
-				//return $resultado;
+
 			}
 			
 			public function insert($consulta){
