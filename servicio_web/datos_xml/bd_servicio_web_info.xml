@@ -1,9 +1,0 @@
-<?xml version='1.0' standalone='yes'?>
-<info>
-	<bd>
-		<direccion>INTRODUCE HERE THE DIRECTION OF YOUR WEB SERVICE DB</direccion>
-		<usuario>INTRODUCE HERE THE USER FOR YOUR WEB SERVICE DB</usuario>
-		<contrasenya>INTRODUCE HERE YOR PASSWORD ON THE WEB SERVICE DB</contrasenya>
-		<nombre_bd>bd_clubes</nombre_bd>
-	</bd>
-</info>
