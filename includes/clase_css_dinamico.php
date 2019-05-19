@@ -3,19 +3,15 @@
 	if(!class_exists('clase_css_dinamico')){
 		Class clase_css_dinamico{
 			public function dame_css(){
+			
 			global $query;
 			$configuracion = $query->config_blog();
 			$configuracion = $configuracion[0];
-	
-			//$output = "<script>console.log('cadena consulta: ".print_r($configuracion);."');</script>";
-			//echo $output;
+		
+			echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">';
 			echo "<style>";
-			
-			//if(!isset($configuracion->color_fondo)) echo "body { background: #f5f5f5;}";
 			echo "
 			body { background: ". $configuracion->color_fondo .";}";
-			
-			//if(!isset($configuracion->fuente)) echo "body{font-family:'Courier New', Courier, monospace;}";
 			echo "
 			body{font-family: ".$configuracion->fuente.";}";
 			
@@ -327,6 +323,8 @@
 			.fuente6{font-family: 'Trebuchet MS', Helvetica, sans-serif}";
 
 			echo "</style>";
+			
+			
 			}
 		}
 	}

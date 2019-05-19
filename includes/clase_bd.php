@@ -2,14 +2,18 @@
 	if(!class_exists("clase_bd")){
 		class clase_bd{
 		protected $mysqli;
-		protected $xml;
+		//protected $xml;
+		protected $bd;
+		protected $direccionBd= 'YOURDBURL';
+		protected $usuarioBd='YOURDBUSER';
+		protected $passwordBd='YOURDBPASSWORD';
+		protected $nombreBd='YOURDBNAME';
+		
 			public function __construct(){
 				global $mysqli;
-				global $xml;
+				
 				session_start();
-
-				$xml = simplexml_load_file('datos_xml/bd_info.xml');
-				$mysqli = new mysqli($xml->bd[0]->direccion,$xml->bd[0]->usuario,$xml->bd[0]->contrasenya);
+				$mysqli = new mysqli($this->direccionBd,$this->usuarioBd,$this->passwordBd);
 				
 				
 				if($mysqli->connect_errno){
@@ -18,8 +22,8 @@
 				/*AQUI SE HA DE COMPROBAR SI LA BASE DE DATOS ESTA CREADA Y DE NO
 				* SER ASI DEBE CREARSE */
 				
-				$nombre_bd = $xml->bd[0]->nombre_bd;		
-				$resultado = $mysqli->select_db($nombre_bd);
+				
+				$resultado = $mysqli->select_db($this->nombreBd);
 				
 				if(!$resultado){
 					printf("no existia la base de datos %s\n ",$mysqli->errno);
@@ -119,11 +123,10 @@
 			
 			function crea_bd(){
 				global $mysqli;
-				global $xml;
-				$consulta = "CREATE DATABASE ". $xml->bd[0]->nombre_bd;
+				$consulta = "CREATE DATABASE ". $this->nombre_bd;
 				$resultado = $mysqli->query($consulta);
 				printf("base de datos creada = %s\n ",$resultado);
-				$mysqli->select_db($xml->bd[0]->nombre_bd);
+				$mysqli->select_db($this->nombre_bd);
 					
 			}
 			
@@ -143,8 +146,7 @@
 				if(!$result){printf("Error consultando, error número = %s\n ",$this->conexion->errno);}
 				//guardar el resultado en un array, pasa de ser un objeto mysql a un array de datos 
 				while($object = $result->fetch_object()){
-				$resultado[] = $object;	
-				//print_r($resultado);		
+				$resultado[] = $object;		
 				}
 				return $resultado;
 			}
