@@ -4,6 +4,7 @@
 	session_start();
 	
 	include("cabecera.php");
+	include("footer.php");
 	require_once('./includes/clase_css_dinamico.php');
 	require_once('./includes/clase_consulta.php');
 	global $query;
@@ -46,10 +47,10 @@
 	<?php global $css; $css->dame_css(); ?>
 	</head>
 	<body>
-	<?php cabecera();?>
+	<?php cabecera_bootstrap();?>
 
-	 <div class="margin">
-		 <div class="centered">
+	 <div class="container">
+		 <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2">
 			<form method="post" enctype="multipart/form-data">
 			<!---->
 			<h2>
@@ -62,7 +63,7 @@
 			   <option value="Fútbol sala" <?php if(isset($entrada) && strcmp($entrada->deporte,"Fútbol sala")==0 ) echo "selected"; ?>> Fútbol sala </option>
 			</select></p>
 			
-			<p>Descripción: <textarea name="descripcion" style="width: 830px; height: 610px;"  maxlength="1000"><?php if(isset($entrada->descripcion)) echo $entrada->descripcion; ?> </textarea></p>
+			<p>Descripción: <textarea name="descripcion"   maxlength="1000"><?php if(isset($entrada->descripcion)) echo $entrada->descripcion; ?> </textarea></p>
 			
 			<p>Sube el escudo del equipo<?php if(isset($entrada->imagen) ) echo ": el equipo ya tiene un escudo subido, puedes cambiarlo subiendo uno nuevo "; ?></p>
 			<input type="file" name="imagen" id="imagen">
@@ -74,6 +75,9 @@
 			</form>
 		</div>
 	</div>
+	<?php
+	footer();
+	?>
 	</body>
 </html>
 

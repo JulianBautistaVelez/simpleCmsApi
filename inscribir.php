@@ -3,6 +3,7 @@
 	//ini_set('display_errors',1);
 	session_start();
 	include("cabecera.php");
+	include("footer.php");
 	require_once('./includes/clase_css_dinamico.php');
 	require_once('./includes/clase_consulta.php');
 	global $query;
@@ -21,14 +22,15 @@
 	<head>
 	<meta charset="utf-8"/>
 	<title>Insertar post</title>
-	<?php global $css; $css->dame_css(); ?>
+	
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<?php global $css; $css->dame_css(); ?>
 	</head>
 	<body>
-	<?php cabecera();?>
+	<?php cabecera_bootstrap();?>
 	
-	 <div class="margin">
-		 <div class="centered">
+	 <div class="container">
+		 <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2">
 			<form id="formulario" enctype="multipart/form-data" method="post">
 			<!---->
 			<h2>
@@ -45,6 +47,9 @@
 			</form>
 		</div>
 	</div>
+	<?php
+		footer();
+	?>
 	</body>
 </html>
 

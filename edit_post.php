@@ -4,6 +4,7 @@
 	session_start();
 	
 	include("cabecera.php");
+	include("footer.php");
 	require_once('./includes/clase_css_dinamico.php');
 	require_once('./includes/clase_consulta.php');
 	global $query;
@@ -47,15 +48,15 @@
 	<?php global $css; $css->dame_css(); ?>
 	</head>
 	<body>
-	<?php cabecera();?>
+	<?php cabecera_bootstrap();?>
 
-	 <div class="margin">
-		 <div class="centered">
+	 <div class="container">
+		 <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2">
 			<form method="post" enctype="multipart/form-data">
 			<!---->
 			<h2>
 			<p>Título: <input type="text" name="post_tit" <?php if(isset($post->titulo)) echo "value ='".$post->titulo."'"; ?> /></p>
-			<p>Texto del post: <textarea name="post_cont" style="width: 830px; height: 610px;"><?php if(isset($post->texto)) echo $post->texto; ?></textarea></p>
+			<p>Texto del post: <textarea name="post_cont" ><?php if(isset($post->texto)) echo $post->texto; ?></textarea></p>
 			<p>Equipo al que se refiere el post: <select name="post_equipo">
 				<?php foreach($lista_equipos as $equipo):?>
 				<option value="<?php echo $equipo->nombre ?>" <?php if(isset($post) && strcmp($post->equipo,$equipo->nombre)==0 ) echo "selected"; ?>><?php echo $equipo->nombre;?> </option>
@@ -75,6 +76,9 @@
 			</form>
 		</div>
 	</div>
+	<?php
+	footer();
+	?>
 	</body>
 </html>
 

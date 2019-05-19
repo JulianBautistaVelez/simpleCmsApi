@@ -3,6 +3,7 @@
 	require_once('./includes/clase_css_dinamico.php');
 	require_once('./includes/clase_consulta.php');
 	include("cabecera.php");
+	include("footer.php")
 	session_start();
 	
 	
@@ -18,7 +19,7 @@
  </head>
  <body>
 	 
-	<?php cabecera();?>
+	<?php cabecera_bootstrap();?>
 	<div class="centered">
 		 ELIMINANDO POST :(
 	</div>
@@ -34,6 +35,9 @@
 				}
 			} 
 		}
+	?>
+	<?php
+	footer();
 	?>
  </body>
 </html>

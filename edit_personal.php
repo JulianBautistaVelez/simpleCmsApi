@@ -5,6 +5,7 @@
 	
 	
 	include("cabecera.php");
+	include("footer.php");
 	require_once('./includes/clase_css_dinamico.php');
 	require_once('./includes/clase_consulta.php');
 	global $query;
@@ -47,10 +48,10 @@
 	<?php global $css; $css->dame_css(); ?>
 	</head>
 	<body>
-	<?php cabecera();?>
+	<?php cabecera_bootstrap();?>
 
-	 <div class="margin">
-		 <div class="centered">
+	 <div class="container">
+		 <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2">
 			<form method="post" enctype="multipart/form-data">
 			<!---->
 			<h2>
@@ -67,7 +68,7 @@
 			<p>Número de camiseta: <input type="camiseta" size="3" maxlength="3" name="camiseta" <?php if(isset($entrada->camiseta)) echo "value ='".$entrada->camiseta."'"; ?> /></p>
 			<p>Altura: <input type="text" name="altura" size="4" maxlength="4" <?php if(isset($entrada->altura)) echo "value ='".$entrada->altura."'"; ?> /> Cms</p>
 			<p>Peso: <input type="text" name="peso" size="3" maxlength="3" <?php if(isset($entrada->peso)) echo "value ='".$entrada->peso."'"; ?> /> Kg</p>
-			<p>Descripción: <textarea name="descripcion" style="width: 830px; height: 610px;" maxlength="1000"><?php if(isset($entrada->descripcion)) echo $entrada->descripcion; ?> </textarea></p>		
+			<p>Descripción: <textarea name="descripcion" style="max-width: 830px; " maxlength="1000"><?php if(isset($entrada->descripcion)) echo $entrada->descripcion; ?> </textarea></p>		
 			
 			<p>Sube una foto del miembro del equipo<?php if(isset($entrada->imagen) ) echo ": el jugador actual ya tiene una imagen almacenada, puedes cambiarla subiendo una nueva "; ?></p>
 			<input type="file" name="imagen" id="imagen">
@@ -82,6 +83,9 @@
 			</form>
 		</div>
 	</div>
+	<?php
+	footer();
+	?>
 	</body>
 </html>
 

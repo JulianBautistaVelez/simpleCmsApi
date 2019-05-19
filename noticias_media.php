@@ -4,6 +4,7 @@
 	require_once('./includes/clase_css_dinamico.php');
 	require_once('./includes/clase_buscador.php');
 	include("cabecera.php");
+	include("footer.php");
 	global $query;
 	global $buscador;
 	if(!empty($_GET)){
@@ -38,7 +39,7 @@
  </head>
  <body>
 	 
-		<?php cabecera();?>
+		<?php cabecera_bootstrap();?>
 	 
 	 <div class="buscador"><form method="post"> <input type="text" name="busqueda"/> <input type='submit' value='buscar'/></form></div>
 	 <div class="margin">
@@ -75,6 +76,9 @@
 			</div>
 		<?php endforeach ?>
 	</div> 
+	<?php
+	footer();
+	?>
  </body>
 </html>
 

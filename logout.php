@@ -2,6 +2,7 @@
 	require_once('./includes/clase_css_dinamico.php');
 	require_once('./includes/clase_login.php');
 	include("cabecera.php");
+	include("footer.php");
 	session_start();
 	global $login;
 	if(!empty($_POST)){$login->log_out($_POST);}
@@ -19,7 +20,7 @@
  </head>
  <body>
 	 
-	<?php cabecera();?>
+	<?php cabecera_bootstrap();?>
 	<div class="centered">
 		<?php
 				 echo "
@@ -30,5 +31,8 @@
 			   
 		 ?>
 	</div>
+	<?php
+	footer();
+	?>
  </body>
 </html>

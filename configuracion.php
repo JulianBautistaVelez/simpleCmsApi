@@ -3,6 +3,7 @@
 	//ini_set('display_errors',1);
 	session_start();
 	include("cabecera.php");
+	include("footer.php");
 	require_once('./includes/clase_consulta.php');
 	require_once('./includes/clase_css_dinamico.php');
 	global $css;
@@ -29,12 +30,11 @@
   <meta charset="utf-8"/>
  </head>
  <body>
-	 
-	 <body>
-	 <?php cabecera();?>
+	 <?php cabecera_bootstrap();?>
 	  
 
-				<div class="centered">
+			<div class="container">
+				<div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2">
 					<form method="post" enctype="multipart/form-data">
 					<!---->
 					<h2>
@@ -63,8 +63,11 @@
 					</h2>
 					</form>
 				</div>
+			</div>
 
- 
+	 <?php
+		footer();
+	 ?>
  </body>
 </html>
 
